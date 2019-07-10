@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<blueprint xmlns="http://www.osgi.org/xmlns/blueprint/v1.0.0"
+           xmlns:jaas="http://karaf.apache.org/xmlns/jaas/v1.0.0"
+           xmlns:ext="http://aries.apache.org/blueprint/xmlns/blueprint-ext/v1.0.0">
+ 
+    <!-- Bean to allow the $[karaf.base] property to be correctly resolved -->
+    <ext:property-placeholder placeholder-prefix="$[" placeholder-suffix="]"/>
+ 
+    <jaas:config name="jetty-ldap" rank="1">
+      <jaas:module className="org.apache.karaf.jaas.modules.ldap.LDAPLoginModule" flags="required">
+            connection.url = ldap://10.0.53.60:10389
+            connection.username = uid=admin,ou=system
+            connection.password = 3RMP8UdJjA8Hm2WD
+             
+            encryption.enabled = true
+            encryption.algorithm = MD5
+            encryption.encoding = hexadecimal
+ 
+            user.base.dn=ou=users,dc=example,dc=com
+            user.filter=(uid=%u)
+            user.search.subtree=true
+             
+            role.base.dn=ou=groups,dc=example,dc=com
+            role.filter =(member=uid=%u,ou=users,dc=example,dc=com)
+            role.name.attribute = cn
+            role.search.subtree = true
+             
+            role.mapping = ldapadmin=group,admin,manager,viewer,webconsole,systembundles;ldapclients=group,viewer
+            authentication = simple
+      </jaas:module>
+    </jaas:config>
+ 
+</blueprint>

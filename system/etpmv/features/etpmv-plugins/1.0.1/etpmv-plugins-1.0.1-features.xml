@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<features xmlns="http://karaf.apache.org/xmlns/features/v1.4.0" name="etpmv-plugins-1.0.1-features">
+    <!--feature name="etpmv-plugins" version="1.0.1">
+        <bundle>mvn:etpmv.features/etpmv-servlet/1.0.1/war</bundle>
+    </feature-->
+    <!--feature name="camel-talendjob" version="7.0.1">
+        <feature version="2.20.1">camel-core</feature>
+        <feature version='7.0.1'>talend-job-api</feature>
+        <bundle>mvn:org.talend.camel/camel-talendjob/7.0.1</bundle>
+    </feature-->
+</features>

@@ -1,0 +1,82 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns="urn://dts/uzd44/act/v1.0.1" targetNamespace="urn://dts/uzd44/act/v1.0.1" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:element name="act" type="actType"/>
+	<xs:complexType name="actType">
+		<xs:annotation>
+			<xs:documentation>Статусы акта</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="idContract" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>
+Идентификатор государственного контракта в ПТС УЗД 44
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="idStage" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>
+Идентификатор этапа государственного контракта в УЗД 44
+					</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="idAct" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Идентификатор акта в ПТС УЗД 44</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="actDate" type="xs:date">
+				<xs:annotation>
+					<xs:documentation>Дата акта </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="actType">
+				<xs:annotation>
+					<xs:documentation>Тип акта</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="actTypeKind"/>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="actNumber" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Номер акта</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="actStageNumber" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Номер этапа</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="actStatus" type="actStatusKind">
+				<xs:annotation>
+					<xs:documentation>Статус акта</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="actPrice" type="xs:decimal" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Цена по акту</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="actTypeKind">
+		<xs:annotation>
+			<xs:documentation>Типы акта: STA - по этапу; CON - итоговый</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="STA"/>
+			<xs:enumeration value="CON"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="actStatusKind">
+		<xs:annotation>
+			<xs:documentation>
+Статус акта: 45 - Утвержден; 49 - Возврат исполнителю
+			</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:unsignedByte">
+			<xs:enumeration value="45"/>
+			<xs:enumeration value="49"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

@@ -1,0 +1,28 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "PING"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:9095"
+    }
+  ],
+  "paths": {
+    "/ping": {
+      "post": {
+        "summary": "ping",
+        "operationId": "ping",
+        "tags": [
+          "ping"
+        ],
+        "responses": {
+          "200": {
+            "description": "ping"
+          }
+        }
+      }
+    }
+  }
+}

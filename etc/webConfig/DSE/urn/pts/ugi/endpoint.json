@@ -1,0 +1,28 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "UGI"
+  },
+  "servers": [
+    {
+      "url": "https://212.5.79.179:8443"
+    }
+  ],
+  "paths": {
+    "/integration/async/post": {
+      "post": {
+        "summary": "ugi",
+        "operationId": "ugi",
+        "tags": [
+          "ugi"
+        ],
+        "responses": {
+          "200": {
+            "description": "ugi"
+          }
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,2 @@
+osgi.wiring.host; (&(osgi.wiring.host=org.apache.karaf.shell.core)(bundle-version>=0.0.0))
+150

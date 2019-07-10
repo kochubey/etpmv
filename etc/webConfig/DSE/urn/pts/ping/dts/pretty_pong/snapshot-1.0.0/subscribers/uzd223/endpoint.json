@@ -1,0 +1,28 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "UZD223"
+  },
+  "servers": [
+    {
+      "url": "https://roscosmos-int.naumen.ru"
+    }
+  ],
+  "paths": {
+    "/rest/test/pong": {
+      "post": {
+        "summary": "uzd223",
+        "operationId": "uzd223",
+        "tags": [
+          "uzd223"
+        ],
+        "responses": {
+          "200": {
+            "description": "uzd223 ping"
+          }
+        }
+      }
+    }
+  }
+}

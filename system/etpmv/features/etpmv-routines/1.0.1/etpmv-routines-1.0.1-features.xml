@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<features xmlns="http://karaf.apache.org/xmlns/features/v1.4.0" name="etpmv-routines-1.0.1-features">
+    <feature name="etpmv-routines" version="1.0.1">
+        <bundle>mvn:org.apache.commons/commons-compress/1.18</bundle>
+        <bundle>
+            wrap:mvn:org.apache.aries.blueprint/org.apache.aries.blueprint.web/1.1.1$Bundle-Name=Apache%20Aries%20Blueprint%20Web&amp;Bundle-SymbolicName=org.apache.aries.blueprint.web&amp;Bundle-Version=1.1.1
+        </bundle>
+        <bundle>mvn:org.apache.camel/camel-core-osgi/2.20.1</bundle>
+        <bundle>mvn:org.yaml/snakeyaml/1.17</bundle>
+        <bundle>mvn:org.jsoup/jsoup/1.10.3</bundle>
+        <bundle>mvn:org.functionaljava/functionaljava/4.7</bundle>
+        <bundle>mvn:com.fasterxml.jackson.dataformat/jackson-dataformat-yaml/2.8.10</bundle>
+        <bundle>mvn:xom/xom/1.2.5</bundle>
+        <bundle>wrap:mvn:com.auth0/java-jwt/3.3.0$Bundle-Name=JSON%20Web%20Token&amp;Bundle-SymbolicName=java.jwt&amp;Bundle-Version=3.3.0</bundle>
+        <bundle>wrap:mvn:com.oracle/ojdbc/12.2.0$Bundle-Name=JDBC%20Driver%20for%20Oracle&amp;Bundle-SymbolicName=oracle.jdbc&amp;Bundle-Version=12.2.0</bundle>
+    </feature>
+    <feature name="talend-job-api" version="7.0.1">
+        <bundle>mvn:org.talend.esb.job/org.talend.esb.job.api/7.0.1</bundle>
+    </feature>
+    <feature name="camel-talendjob" version="7.0.1">
+        <feature version="2.20.1">camel-core</feature>
+        <feature version='7.0.1'>talend-job-api</feature>
+        <bundle>mvn:org.talend.camel/camel-talendjob/7.0.1</bundle>
+    </feature>
+</features>

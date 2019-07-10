@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<features xmlns="http://karaf.apache.org/xmlns/features/v1.3.0" name="hawtio-2.4.0">
+
+  <feature name="hawtio-core" version="2.4.0">
+    <details>Installs the core Hawtio war file with minimal extensions</details>
+    <feature>war</feature>
+    <feature>aries-blueprint</feature>
+    <bundle>mvn:io.hawt/hawtio-war/2.4.0/war</bundle>
+
+    <config name="jmx.acl.hawtio.plugin">
+      * = *
+    </config>
+  </feature>
+
+  <feature name="hawtio-rbac" version="2.4.0">
+    <details>Installs the Hawtio RBAC enabler bundles</details>
+    <feature>management</feature>
+    <bundle>mvn:io.hawt/hawtio-osgi-jmx/2.4.0</bundle>
+  </feature>
+
+  <feature name="hawtio-log" version="2.4.0">
+    <details>Installs the Hawtio logging backend MBeans</details>
+    <feature>log</feature>
+    <bundle>mvn:io.hawt/hawtio-log/2.4.0</bundle>
+    <bundle>mvn:io.hawt/hawtio-log-osgi/2.4.0</bundle>
+    <bundle dependency="true">mvn:com.fasterxml.jackson.core/jackson-core/2.8.11</bundle>
+    <bundle dependency="true">mvn:com.fasterxml.jackson.core/jackson-annotations/2.8.11</bundle>
+    <bundle dependency="true">mvn:com.fasterxml.jackson.core/jackson-databind/2.8.11</bundle>
+  </feature>
+
+  <feature name="hawtio" version="2.4.0">
+    <details>Installs the main Hawtio web console</details>
+    <feature>hawtio-core</feature>
+    <feature>hawtio-rbac</feature>
+    <feature>hawtio-log</feature>
+  </feature>
+
+</features>

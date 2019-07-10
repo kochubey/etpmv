@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<features xmlns="http://karaf.apache.org/xmlns/features/v1.0.0" name="nsi-irv-message-feature">
+    <feature name="nsi-irv-message-feature" version="0.1.0">
+        <feature>camel-groovy</feature>
+        <feature>camel-spring</feature>
+        <feature>camel-blueprint</feature>
+        <feature>camel-core</feature>
+        <feature>camel-cxf</feature>
+        <feature>http</feature>
+        <feature>camel-jetty9</feature>
+        <feature>camel-http</feature>
+        <feature>camel-http4</feature>
+        <feature>camel-exec</feature>
+        <bundle>mvn:etpmv.routes.canon/nsi-irv-message-bundle/0.1.0</bundle>
+        <config name="etpmv.routes.canon.nsi.irv.message">
+            etpmv.config.url=http://localhost:8383/webConfig
+            service.port=8888
+        </config>
+    </feature>
+</features>

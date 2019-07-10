@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+xmlns="urn://dts/uzd44/payment/v1.0.1"
+targetNamespace="urn://dts/uzd44/payment/v1.0.1"
+elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:element name="payment" type="paymentType"/>
+	<xs:complexType name="paymentType">
+		<xs:annotation>
+			<xs:documentation>Платежи</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="idContract" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Идентификатор государственного контракта в ПТС УЗД 44</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="idStage" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Идентификатор этапа государственного контракта в УЗД 44</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="ipPayment" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Идентификатор платежа в ПТС УЗД 44</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="payMode" type="payModeKind">
+				<xs:annotation>
+					<xs:documentation>Тип платежа</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="payType" type="payTypeKind">
+				<xs:annotation>
+					<xs:documentation>Вид платежа</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="payYearReturn" type="xs:gYear" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Год возврата платежа</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="payNumber" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Номер платежа</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="payContractor" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Поставщик. id контрагента из ПТС НСИ</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="payDate" type="xs:date">
+				<xs:annotation>
+					<xs:documentation>Цена по акту</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="payPurpose" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Назначение платежа</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="payAmount" type="xs:decimal">
+				<xs:annotation>
+					<xs:documentation>Сумма платежа</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="payCurrency" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Валюта</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="payTax" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Вид налога</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="payTaxAmount" type="xs:decimal" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Сумма НДС</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="payRate" type="payRateKind" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Ставка налога</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="payFile" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Вложенный файл платежа</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="payModeKind">
+		<xs:annotation>
+			<xs:documentation>Тип платежа: IN - входящий; OUT - исходящий</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="IN"/>
+			<xs:enumeration value="OUT"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="payTypeKind">
+		<xs:annotation>
+			<xs:documentation>Вид платежа: 45 - Утвержден; 49 - Возврат исполнителю</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="NA"/>
+			<xs:enumeration value="PP"/>
+			<xs:enumeration value="PA"/>
+			<xs:enumeration value="RE"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="payRateKind">
+		<xs:annotation>
+			<xs:documentation>Ставка налога: 0 - 0%; 10 - 10%; 18 - 18%; 20 - 20%</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:unsignedByte">
+			<xs:enumeration value="0"/>
+			<xs:enumeration value="10"/>
+			<xs:enumeration value="18"/>
+			<xs:enumeration value="20"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

@@ -1,0 +1,8 @@
+osgi.wiring.package; (&(osgi.wiring.package=org.apache.commons.beanutils)(version>=1.7.0)(!(version>=2.0.0)))
+157; version=1.8.3
+osgi.wiring.package; (osgi.wiring.package=org.apache.commons.logging)
+6; version=1.2.0
+osgi.wiring.package; (&(osgi.wiring.package=org.apache.commons.lang.exception)(version>=2.3.0)(!(version>=3.0.0)))
+89; version=2.6.0
+osgi.wiring.package; (&(osgi.wiring.package=org.apache.commons.lang.builder)(version>=2.3.0)(!(version>=3.0.0)))
+89; version=2.6.0

@@ -1,0 +1,28 @@
+
+  "openapi": "3.0.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "UZD44"
+  },
+  "servers": [
+    {
+      "url": "https://212.5.79.179:8443"
+    }
+  ],
+  "paths": {
+    "/uzd/api/async/post": {
+      "post": {
+        "summary": "uzd44",
+        "operationId": "uzd44",
+        "tags": [
+          "uzd44"
+        ],
+        "responses": {
+          "200": {
+            "description": "uzd44"
+          }
+        }
+      }
+    }
+  }
+}

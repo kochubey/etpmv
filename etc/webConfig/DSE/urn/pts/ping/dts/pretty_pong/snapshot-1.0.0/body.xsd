@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema attributeFormDefault="unqualified" elementFormDefault="qualified"
+           targetNamespace="urn://dts/ping/pretty_pong/snapshot-1.0.1"
+           xmlns:tns="urn://dts/ping/pretty_pong/snapshot-1.0.1"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema">
+
+    <xs:element name="pingRequest" type="tns:pingRequestType"/>
+    <xs:element name="pongResponse" type="tns:pongResponseType"/>
+    <xs:element name="pong" type="tns:pongType"/>
+
+    <xs:complexType name="pongType">
+        <xs:sequence>
+            <xs:element name="message" type="xs:string" default="Ответ от agat-esb.efive.ru:"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="pongResponseType">
+        <xs:sequence>
+            <xs:element ref="tns:pong"/>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:simpleType name="pingRequestType">
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="Get"/>
+        </xs:restriction>
+    </xs:simpleType>
+
+</xs:schema>

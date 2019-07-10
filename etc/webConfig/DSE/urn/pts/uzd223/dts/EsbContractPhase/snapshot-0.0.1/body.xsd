@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="urn://dts/uzd223/EsbContractPhase/snapshot-0.0.1"
+           xmlns:tns="urn://dts/uzd223/EsbContractPhase/snapshot-0.0.1"
+           elementFormDefault="qualified"
+           attributeFormDefault="unqualified"
+           version="1.0">
+
+    <xs:element name="EsbContractPhase" type="tns:EsbContractPhase"/>
+
+    <xs:complexType name="EsbContractPhase">
+        <xs:sequence>
+            <xs:element name="agreementId" type="tns:string-32">
+                <xs:annotation>
+                    <xs:documentation>
+                        ID договора (связка с договором)
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="stageId" type="tns:string-32">
+                <xs:annotation>
+                    <xs:documentation>
+                        ID этапа договора
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="headAgreementId" type="tns:string-255">
+                <xs:annotation>
+                    <xs:documentation>
+                        ID гос контракта
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="number" type="tns:string-32">
+                <xs:annotation>
+                    <xs:documentation>
+                        Номер этапа
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+			<xs:element name="headstageId" type="tns:string-255">
+                <xs:annotation>
+                    <xs:documentation>
+                        ID этапа гос контракта
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="title" type="tns:string-4000">
+                <xs:annotation>
+                    <xs:documentation>
+                        Наименование этапа
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="supplierInn" type="tns:inn" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        Исполнитель - контрагент
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="worktype" type="tns:string-4000" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        Вид работ
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="startDate" type="tns:date">
+                <xs:annotation>
+                    <xs:documentation>
+                        Сроки выполнения работ. Дата начала этапа
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="endDate" type="tns:date">
+                <xs:annotation>
+                    <xs:documentation>
+                        Сроки выполнения работ. Дата окончания этапа
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="amountStateContract" type="xs:decimal"  minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        Цена работ этапа. (Сумма этапа)
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="currentStage" type="tns:string-4000">
+                <xs:annotation>
+                    <xs:documentation>
+                        Статус Этапа (ожидает оплату/ акт утвержден/ оплачен/ прекращен)
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="currency" type="tns:string-255"  minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        Валюта по этапу
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="amountClosingDocuments" type="xs:decimal"  minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        Закрыто по актам (сумма)
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="costtype" type="tns:string-4000"  minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        Вид затрат
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+			<xs:element name="comments" type="tns:string-4000"  minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        Описание (комментарий)
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="vatRateSum" type="xs:decimal"  minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        Сумма налога
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="vatRate" type="tns:string-32"  minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        Ставка налога
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="stageDoc" type="tns:string-4000"  minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        Документы этапа (перечень документов этапа по ведомости)
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="specification" type="tns:string-255"  minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        Спецификация (если была закупка на этапе)
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:simpleType name="string-32">
+        <xs:restriction base="xs:string">
+            <xs:maxLength value="32"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="string-255">
+        <xs:restriction base="xs:string">
+            <xs:maxLength value="255"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="string-4000">
+        <xs:restriction base="xs:string">
+            <xs:maxLength value="4000"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="inn">
+        <xs:restriction base="xs:string">
+            <xs:maxLength value="12"/>
+            <xs:pattern value="\d{10}|\d{12}"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="date">
+        <xs:restriction base="xs:date">
+            <xs:pattern value="(19|20)\d{2}-\d{2}-\d{2}"/>
+        </xs:restriction>
+    </xs:simpleType>
+</xs:schema>
+

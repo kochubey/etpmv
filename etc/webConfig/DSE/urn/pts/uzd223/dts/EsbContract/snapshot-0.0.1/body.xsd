@@ -1,0 +1,348 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="urn://dts/uzd223/EsbContract/snapshot-0.0.1"
+           xmlns:tns="urn://dts/uzd223/EsbContract/snapshot-0.0.1"
+           elementFormDefault="qualified"
+           attributeFormDefault="unqualified"
+           version="1.0">
+
+    <xs:element name="EsbContract" type="tns:EsbContract"/>
+
+    <xs:complexType name="EsbContract">
+        <xs:sequence>
+            <xs:element name="customBOCaseForView" type="tns:string-4000">
+                <xs:annotation>
+                    <xs:documentation>
+                        Вид договора
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="guid" type="tns:string-32">
+                <xs:annotation>
+                    <xs:documentation>
+                        Идентификатор договора
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+			<xs:element name="headId" type="tns:string-32">
+                <xs:annotation>
+                    <xs:documentation>
+                        Идентификатор связанного с договором ГК
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="customerID" type="tns:string-255">
+                <xs:annotation>
+                    <xs:documentation>
+                        ID Заказчика по договору  (Контрагент) - ID записи из НСИ
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="supplierID" type="tns:string-255">
+                <xs:annotation>
+                    <xs:documentation>
+                        ID  Исполнителя по договору  (Контрагент) -ID записи из НСИ
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="additionalInfo" type="tns:string-2000" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        Описание (комментарий)
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="currentStage" type="tns:string-4000">
+                <xs:annotation>
+                    <xs:documentation>
+                        Состояние (Статус)
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="codeNumber" type="tns:string-255" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        Шифр
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="identifier" type="tns:string-255">
+                <xs:annotation>
+                    <xs:documentation>
+                        Номер договора
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+			<xs:element name="version" type="tns:string-255">
+                <xs:annotation>
+                    <xs:documentation>
+                        Версия договора
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="settlementDate" type="tns:date" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        Дата заключения договора
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="offer" type="tns:string-255" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        Реестровый номер закупки (по которой проведен конкурс)
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="contractBaseDocuments" type="tns:contractBaseDocuments">
+                <xs:annotation>
+                    <xs:documentation>
+                        Информация по документам-основаниям для заключения договора
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="decisions" type="tns:decisions">
+                <xs:annotation>
+                    <xs:documentation>
+                        Информация по решениям об изменении контракта
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="additionalAgreements" type="tns:additionalAgreements">
+                <xs:annotation>
+                    <xs:documentation>
+                        Информация по доп.соглашениям договора
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="cfo" type="tns:string-4000" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        ЦФО
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+			<xs:element name="financialSource" type="tns:string-4000" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        Источник финансирования
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="project" type="tns:string-4000" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        Проект, по которому запланированы средства в бюджете
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="budgetItem" type="tns:string-4000" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        Статья затрат
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="price" type="xs:decimal">
+                <xs:annotation>
+                    <xs:documentation>
+                        Цена (Сумма) договора в валюте
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="priceCurrentYear" type="xs:decimal" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        Сумма в текущем году
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="imprest" type="xs:boolean">
+                <xs:annotation>
+                    <xs:documentation>
+                        Аванс (да/нет)
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="prepaymentPercent" type="xs:double">
+                <xs:annotation>
+                    <xs:documentation>
+                        Аванс (%)
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="contractSubject" type="tns:string-4000">
+                <xs:annotation>
+                    <xs:documentation>
+                        Предмет договора
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="currency" type="tns:string-255">
+                <xs:annotation>
+                    <xs:documentation>
+                        Валюта договора
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="contractStartDate" type="tns:date" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        Дата начала исполнения договора
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="contractEndDate" type="tns:date" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        Дата окончания исполнения договора
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="fileTab" type="tns:string-255">
+                <xs:annotation>
+                    <xs:documentation>
+                        ссылка на Файл договора
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="contractBaseDocuments">
+        <xs:sequence>
+            <xs:element name="contractBaseDocument" type="tns:contractDocumentsInfo" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>
+                        Информация по документам-основаниям для заключения договора
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="decisions">
+        <xs:sequence>
+            <xs:element name="decision" type="tns:decisionDocumentsInfo" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>
+                        Информация по решениям на изменение договора
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="additionalAgreements">
+        <xs:sequence>
+            <xs:element name="additionalAgreement" type="tns:agreementDocumentsInfo" maxOccurs="unbounded">
+                <xs:annotation>
+                    <xs:documentation>
+                        Информация по доп.соглашениям договора
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="baseDocumentsInfo">
+        <xs:sequence>
+            <xs:element name="identifier" type="tns:string-255" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        Номер документа
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="date" type="tns:date" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        Дата документа
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:complexType name="contractDocumentsInfo">
+        <xs:complexContent>
+            <xs:extension base="tns:baseDocumentsInfo">
+                <xs:sequence>
+                    <xs:element name="protocol" type="tns:string-255" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+                                Протокол, составленный по результатам закупки (номер)
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="decisionDocumentsInfo">
+        <xs:complexContent>
+            <xs:extension base="tns:baseDocumentsInfo">
+                <xs:sequence>
+                    <xs:element name="type" type="tns:string-255">
+                        <xs:annotation>
+                            <xs:documentation>
+                                Вид изменений (существенные условия, несущественные условия, расторжение)
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                    <xs:element name="reason" type="tns:string-255" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+                                Причина внесения изменений
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:complexType name="agreementDocumentsInfo">
+        <xs:complexContent>
+            <xs:extension base="tns:baseDocumentsInfo">
+                <xs:sequence>
+                    <xs:element name="causeType" type="tns:string-4000" minOccurs="0">
+                        <xs:annotation>
+                            <xs:documentation>
+                                Вид документа основания (дополнительное соглашение,  решение контролирующего органа и т.д.)
+                            </xs:documentation>
+                        </xs:annotation>
+                    </xs:element>
+                </xs:sequence>
+            </xs:extension>
+        </xs:complexContent>
+    </xs:complexType>
+
+    <xs:simpleType name="string-32">
+        <xs:restriction base="xs:string">
+            <xs:maxLength value="32"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="string-255">
+        <xs:restriction base="xs:string">
+            <xs:maxLength value="255"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="string-4000">
+        <xs:restriction base="xs:string">
+            <xs:maxLength value="4000"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="string-2000">
+        <xs:restriction base="xs:string">
+            <xs:maxLength value="2000"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="date">
+        <xs:restriction base="xs:date">
+            <xs:pattern value="(19|20)\d{2}-\d{2}-\d{2}"/>
+        </xs:restriction>
+    </xs:simpleType>
+</xs:schema>
+

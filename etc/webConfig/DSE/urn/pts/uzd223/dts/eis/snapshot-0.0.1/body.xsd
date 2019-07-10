@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns="urn://dts/uzd223/eis/snapshot-0.0.1"
+           targetNamespace="urn://dts/uzd223/eis/snapshot-0.0.1"
+           attributeFormDefault="unqualified" elementFormDefault="unqualified">
+    <xs:element name="eis-ftp" type="eisftpType"/>
+    <xs:element name="eis-confirm" type="eisconfirmType"/>
+    <xs:complexType name="eisftpType">
+        <xs:sequence>
+            <xs:element type="fileNameType" name="filename">
+                <xs:annotation>
+                    <xs:documentation>
+                        Наименование передаваемого файла с выгрузкой
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element type="spzNumType" name="orgRegNum">
+                <xs:annotation>
+                    <xs:documentation>
+                        Уникальный учетный номер организации В ЕИС
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element type="dateType" name="date">
+                <xs:annotation>
+                    <xs:documentation>
+                        Дата выгрузки
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="eis-upload" type="eisuploadType"/>
+    <xs:complexType name="eisuploadType">
+        <xs:sequence>
+            <xs:element type="xs:string" name="filename">
+                <xs:annotation>
+                    <xs:documentation>
+                        Наименование передаваемого файла с выгрузкой
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element type="clientType" name="clientType" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        Тип клиента
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element type="xs:base64Binary" name="signature" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        Электронная подпись
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="eisconfirmType">
+        <xs:sequence>
+            <xs:element type="xs:int" name="http-status">
+                <xs:annotation>
+                    <xs:documentation>
+                        Код http ответа
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:simpleType name="spzNumType">
+        <xs:restriction base="xs:string">
+            <xs:pattern value="\d{1,11}"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="fileNameType">
+        <xs:restriction base="xs:string">
+            <xs:maxLength value="250" />
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="dateType">
+        <xs:restriction base="xs:date">
+            <xs:pattern value="(19|20)\d{2}-\d{2}-\d{2}"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="clientType">
+        <xs:annotation>
+            <xs:documentation>Тип: Тип внешнего контрагента документа:
+                VSRZ   - Внешняя система размещения заказов;
+                RMIS - Региональная муниципальная информационная система;
+                FAS - Федеральная антимонопольная служба;
+                ETP - Электронная торговая площадка;
+                BANK - Банк;
+                GIIS_EB - ГИИС Электронный бюджет,
+                OA - Информационные системы органов аудита,
+                OVK - Информационные системы органов внутреннего контроля,
+                IKO - Информационные системы контрольных органов.</xs:documentation>
+        </xs:annotation>
+        <xs:restriction base="xs:string">
+            <xs:enumeration value="VSRZ">
+                <xs:annotation>
+                    <xs:documentation>Внешняя система размещения заказов</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="RMIS">
+                <xs:annotation>
+                    <xs:documentation>Региональная муниципальная информационная система</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="FAS">
+                <xs:annotation>
+                    <xs:documentation>Федеральная антимонопольная служба</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="ETP">
+                <xs:annotation>
+                    <xs:documentation>Электронная торговая площадка</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="BANK">
+                <xs:annotation>
+                    <xs:documentation>Банк</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="GIIS_EB">
+                <xs:annotation>
+                    <xs:documentation>ГИИС Электронный бюджет</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="OA">
+                <xs:annotation>
+                    <xs:documentation>Информационные системы органов аудита</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="OVK">
+                <xs:annotation>
+                    <xs:documentation>Информационные системы органов внутреннего контроля</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+            <xs:enumeration value="IKO">
+                <xs:annotation>
+                    <xs:documentation>Информационные системы контрольных органов</xs:documentation>
+                </xs:annotation>
+            </xs:enumeration>
+        </xs:restriction>
+    </xs:simpleType>
+
+</xs:schema>

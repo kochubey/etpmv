@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+xmlns="urn://dts/uzd44/stageStatus/v1.0.1"
+targetNamespace="urn://dts/uzd44/stageStatus/v1.0.1"
+elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:element name="stageStatus" type="stageStatusType"/>
+	<xs:complexType name="stageStatusType">
+		<xs:annotation>
+			<xs:documentation>Статусы этапа государственного контракта</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="idContract" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Идентификатор государственного контракта в ПТС УЗД 44</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="idStage" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Идентификатор этапа государственного контракта в УЗД 44</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="stageStatus">
+				<xs:annotation>
+					<xs:documentation>Статус этапа</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="stageStatusKind"/>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="stagePaymentStatus" type="stagePaymentStatusKind">
+				<xs:annotation>
+					<xs:documentation>Статус оплаты</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="stageStatusKind">
+		<xs:annotation>
+			<xs:documentation>Статусы этапа: 25 - Завершено; 29 - Отказ в приемке</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:unsignedByte">
+			<xs:enumeration value="25"/>
+			<xs:enumeration value="29"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="stagePaymentStatusKind">
+		<xs:annotation>
+			<xs:documentation>Статусы оплаты: 31 - Ожидает оплату; 33 - Оплачен частично; 35 - Оплачен; 39 - Перефинансирован</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:unsignedByte">
+			<xs:enumeration value="31"/>
+			<xs:enumeration value="33"/>
+			<xs:enumeration value="35"/>
+			<xs:enumeration value="39"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

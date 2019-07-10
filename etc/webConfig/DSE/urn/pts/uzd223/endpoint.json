@@ -1,0 +1,28 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "UZD PONG"
+  },
+  "servers": [
+    {
+      "url": "https://roscosmos-int.naumen.ru"
+    }
+  ],
+  "paths": {
+    "/rest/test/pong": {
+      "post": {
+        "summary": "pong",
+        "operationId": "pong",
+        "tags": [
+          "pong"
+        ],
+        "responses": {
+          "200": {
+            "description": "pong response"
+          }
+        }
+      }
+    }
+  }
+}

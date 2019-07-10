@@ -1,0 +1,10 @@
+osgi.wiring.package; (&(osgi.wiring.package=org.apache.commons.collections.keyvalue)(version>=3.0.0)(!(version>=4.0.0)))
+86; version=3.2.2
+osgi.wiring.package; (&(osgi.wiring.package=org.apache.commons.collections.list)(version>=3.0.0)(!(version>=4.0.0)))
+86; version=3.2.2
+osgi.wiring.package; (&(osgi.wiring.package=org.apache.commons.collections.set)(version>=3.0.0)(!(version>=4.0.0)))
+86; version=3.2.2
+osgi.wiring.package; (&(osgi.wiring.package=org.apache.commons.collections.comparators)(version>=3.0.0)(!(version>=4.0.0)))
+86; version=3.2.2
+osgi.wiring.package; (&(osgi.wiring.package=org.apache.commons.logging)(version>=1.1.0)(!(version>=2.0.0)))
+6; version=1.2.0

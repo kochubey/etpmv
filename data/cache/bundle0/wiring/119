@@ -1,0 +1,6 @@
+osgi.wiring.package; (osgi.wiring.package=org.apache.geronimo.osgi.registry.api)
+118; version=1.0.0
+osgi.wiring.package; (osgi.wiring.package=org.osgi.framework)
+0; version=1.8.0
+osgi.wiring.package; (osgi.wiring.package=org.osgi.util.tracker)
+0; version=1.5.1

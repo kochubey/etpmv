@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="urn://dts/uzd223/EsbContractPayment/snapshot-0.0.1"
+           xmlns:tns="urn://dts/uzd223/EsbContractPayment/snapshot-0.0.1"
+           elementFormDefault="qualified"
+           attributeFormDefault="unqualified"
+           version="1.0">
+
+    <xs:element name="EsbContractPayment" type="tns:EsbContractPayment"/>
+
+    <xs:complexType name="EsbContractPayment">
+        <xs:sequence>
+            <xs:element name="stageId" type="tns:string-32">
+                <xs:annotation>
+                    <xs:documentation>
+                        ID этапа договора
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="agreementId" type="tns:string-32">
+                <xs:annotation>
+                    <xs:documentation>
+                        ID договора (связка с договором)
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="paymentType" type="tns:string-4000" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        Вид платежа - аванс, окончательная оплата
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="identifier" type="tns:string-255">
+                <xs:annotation>
+                    <xs:documentation>
+                        Номер П/П
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="project" type="tns:string-4000" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        Проект, по которому запланированы средства в бюджете
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="budget" type="tns:string-4000" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        Группа и статья бюджета
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="currency" type="tns:string-255" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        Валюта
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="date" type="tns:date" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        Дата платежа
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="sum" type="xs:decimal">
+                <xs:annotation>
+                    <xs:documentation>
+                        Сумма платежа
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="tax" type="tns:string-255" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        Вид налога
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="vatRate" type="tns:string-255" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        Ставка НДС %
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="vatRateSum" type="xs:decimal">
+                <xs:annotation>
+                    <xs:documentation>
+                        Сумма НДС
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="payment" type="tns:string-4000" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        Назначение платежа
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+            <xs:element name="cfo" type="tns:string-4000" minOccurs="0">
+                <xs:annotation>
+                    <xs:documentation>
+                        ЦФО
+                    </xs:documentation>
+                </xs:annotation>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+    <xs:simpleType name="string-32">
+        <xs:restriction base="xs:string">
+            <xs:maxLength value="32"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="string-255">
+        <xs:restriction base="xs:string">
+            <xs:maxLength value="255"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="string-4000">
+        <xs:restriction base="xs:string">
+            <xs:maxLength value="4000"/>
+        </xs:restriction>
+    </xs:simpleType>
+    <xs:simpleType name="date">
+        <xs:restriction base="xs:date">
+            <xs:pattern value="(19|20)\d{2}-\d{2}-\d{2}"/>
+        </xs:restriction>
+    </xs:simpleType>
+</xs:schema>
+

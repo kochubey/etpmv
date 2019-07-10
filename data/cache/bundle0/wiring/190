@@ -1,0 +1,14 @@
+osgi.wiring.package; (&(osgi.wiring.package=org.osgi.service.packageadmin)(version>=1.2.0)(!(version>=2.0.0)))
+0; version=1.2.0
+osgi.wiring.package; (&(osgi.wiring.package=org.slf4j)(version>=1.5.0)(!(version>=2.0.0)))
+6; version=1.7.25
+osgi.wiring.package; (&(osgi.wiring.package=org.osgi.framework)(version>=1.6.0)(!(version>=2.0.0)))
+0; version=1.8.0
+osgi.wiring.package; (&(osgi.wiring.package=org.objectweb.asm.commons)(version>=5.0.0)(!(version>=6.0.0)))
+221; version=5.2.0
+osgi.wiring.package; (&(osgi.wiring.package=org.objectweb.asm.signature)(version>=5.0.0)(!(version>=6.0.0)))
+221; version=5.2.0
+osgi.wiring.package; (&(osgi.wiring.package=org.apache.xbean.osgi.bundle.util)(version>=4.1.0)(!(version>=5.0.0)))
+189; version=4.1.0
+osgi.wiring.package; (&(osgi.wiring.package=org.objectweb.asm)(version>=5.0.0)(!(version>=6.0.0)))
+221; version=5.2.0

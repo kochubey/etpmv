@@ -1,0 +1,8 @@
+osgi.wiring.package; (osgi.wiring.package=javax.enterprise.util)
+30; version=1.1.0
+osgi.wiring.bundle; (osgi.wiring.bundle=system.bundle)
+0
+osgi.wiring.package; (osgi.wiring.package=javax.enterprise.context)
+30; version=1.1.0
+osgi.wiring.package; (&(osgi.wiring.package=javax.interceptor)(version>=1.2.0)(!(version>=1.2.98)))
+31; version=1.2.0

@@ -1,0 +1,494 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" 
+xmlns="urn://dts/uzd44/contract/v1.0.1" 
+targetNamespace="urn://dts/uzd44/contract/v1.0.1" 
+elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:element name="contractRequest" type="contractRequestType"/>
+	<xs:complexType name="contractRequestType">
+		<xs:annotation>
+			<xs:documentation>Для контрактов используются 2 фильтра: 1. по id Контракта, в этом случае выгружается последняя актуальная информация по контракту (не изменения) 2. По дате: 2.1. В случае если дата не превышает 30 дней от текущей даты - выполняется выгрузка изменений за указанный период, выгрузка выполняется в реальном времени; 2.2. В случае если дата превышает 30 дней с текущей даты - выполняется историческая выгрузка контрактов за указанный период (актуальное состояние, не изменения), выгрузка выполняется в не рабочее время.</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="filter">
+				<xs:annotation>
+					<xs:documentation>Фильтр запроса на получение конрактов</xs:documentation>
+				</xs:annotation>
+				<xs:complexType mixed="true">
+					<xs:sequence>
+						<xs:element name="idContract" type="xs:string" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>id Контракта</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="changeDate" type="xs:date">
+							<xs:annotation>
+								<xs:documentation>Дата изменения (с какой даты требуются изменения)</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="contract" type="contractType"/>
+	<xs:complexType name="contractType">
+		<xs:annotation>
+			<xs:documentation>Государственный контракт и этапы</xs:documentation>
+		</xs:annotation>
+		<xs:sequence>
+			<xs:element name="idContract" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Идентификатор государственного контракта в ПТС УЗД 44</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="code" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Шифр государственного контракта</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="version" type="xs:unsignedByte">
+				<xs:annotation>
+					<xs:documentation>Версия государственного контракта</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="contractType" type="contractKind" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Вид государственного контракта</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="Number" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Регистрационный номер государственного контракта</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="regNumber" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Реестровый номер государственного контракта (ЕИС)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="comment" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Описание (комментарий)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="signDate" type="xs:date">
+				<xs:annotation>
+					<xs:documentation>Дата заключения (подписания) контракта</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="department" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Ответственный департамент (внутренний заказчик). id из ПТС НСИ</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="DS" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Дополнительное соглашение</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="dsNumber" type="xs:string" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Номер документа основания</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="dsDate" type="xs:date" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Дата документа основания </xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="dsType" type="xs:string" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Вид документа основания</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="dsChangeType" type="dschangeKind" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Вид изменений</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="dsReason" type="xs:string" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Причина внесения изменений</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+						<xs:element name="dsReasonComment" type="xs:string" minOccurs="0">
+							<xs:annotation>
+								<xs:documentation>Описание изменений</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="GP" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Государственная программа. id из ПТС НСИ</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="GPFCP" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>ФЦП / ФКП. id из ПТС НСИ</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="GPEvent" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Мероприятие. id из ПТС НСИ</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="lawType" type="lawKind">
+				<xs:annotation>
+					<xs:documentation>Закон</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="FinSources" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Информация об источниках финансирования</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence maxOccurs="unbounded">
+						<xs:element name="finSource" type="xs:string">
+							<xs:annotation>
+								<xs:documentation>Источник финансирования. id из ПТС НСИ</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="finType" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Направление финансирования. id из ПТС НСИ
+</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="IKZ" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Идентификационный код закупки (ИКЗ)</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SOP" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Способ определения поставщика (СОП).
+Заполняется на основании извещения. id из ПТС НСИ</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="KBKs" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Информация о кодах бюджетной классификации (КБК)</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence maxOccurs="unbounded">
+						<xs:element name="KBK" type="xs:string">
+							<xs:annotation>
+								<xs:documentation>Код бюджетной классификации (КБК). id из ПТС НСИ</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="OKPDs" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Информация об ОКПД2</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence maxOccurs="unbounded">
+						<xs:element name="OKPD" type="xs:string">
+							<xs:annotation>
+								<xs:documentation>ОКПД2. id из ПТС НСИ</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="OKVEDs" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Информация об ОКВЭД2</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence maxOccurs="unbounded">
+						<xs:element name="OKVED" type="xs:string">
+							<xs:annotation>
+								<xs:documentation>ОКВЭД2. id из ПТС НСИ</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="contractors">
+				<xs:annotation>
+					<xs:documentation>Информация об Исполнителях (Поставщиках, Подрядчиках)</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence maxOccurs="unbounded">
+						<xs:element name="сontractor" type="xs:string">
+							<xs:annotation>
+								<xs:documentation>Исполнитель (Поставщик, Подрядчик). id из ПТС НСИ</xs:documentation>
+							</xs:annotation>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="customer" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Заказчик. id из ПТС НСИ</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="status" type="contractStatusKind">
+				<xs:annotation>
+					<xs:documentation>Статус контракта</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="subject" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Предмет контракта</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="price" type="xs:decimal" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Цена контракта</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="currency" type="xs:string">
+				<xs:annotation>
+					<xs:documentation>Идентификатор валюты контракта. id из ПТС НСИ</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="SMP" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Участие субъектов малого предпринимательства (СМП). 1 - Требуется, 0 - Не требуется</xs:documentation>
+				</xs:annotation>
+				<xs:simpleType>
+					<xs:restriction base="xs:boolean"/>
+				</xs:simpleType>
+			</xs:element>
+			<xs:element name="needVP" type="xs:boolean" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Участие военного представительства. 1 - Требуется, 0 - Не требуется </xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="VPs" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Информация об участии военных представительств </xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="VP" minOccurs="0" maxOccurs="unbounded">
+							<xs:annotation>
+								<xs:documentation>Военное представительство</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="VPContractor" type="xs:string">
+										<xs:annotation>
+											<xs:documentation>Военное представительство. id контрагента из ПТС НСИ</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="VPYear" type="xs:gYear">
+										<xs:annotation>
+											<xs:documentation>Год участия военного представительства</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="startDate" type="xs:date">
+				<xs:annotation>
+					<xs:documentation>Начало срока действия контракта</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="endDate" type="xs:date">
+				<xs:annotation>
+					<xs:documentation>Окончание срока действия контракта</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="contractFile" type="xs:string" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Файл контракта</xs:documentation>
+				</xs:annotation>
+			</xs:element>
+			<xs:element name="stages">
+				<xs:annotation>
+					<xs:documentation>Информация о этапах контракта</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="stage" maxOccurs="unbounded">
+							<xs:annotation>
+								<xs:documentation>Этап государственного контракта</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="idStage" type="xs:string">
+										<xs:annotation>
+											<xs:documentation>Идентификатор этапа в УЗД 44</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="stageNumber" type="xs:string">
+										<xs:annotation>
+											<xs:documentation>Номер этапа </xs:documentation>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="stageName" type="xs:string" minOccurs="0">
+										<xs:annotation>
+											<xs:documentation>Наименование этапа</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="stageContractor" type="xs:string" minOccurs="0">
+										<xs:annotation>
+											<xs:documentation>Исполнитель по этапу. id из ПТС НСИ</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="stageWorkType" type="xs:string" minOccurs="0">
+										<xs:annotation>
+											<xs:documentation>Вид работ</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="stageStartDate" type="xs:date" minOccurs="0">
+										<xs:annotation>
+											<xs:documentation>Дата начала этапа</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="stageEndDate" type="xs:date" minOccurs="0">
+										<xs:annotation>
+											<xs:documentation>Дата окончания этапа </xs:documentation>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="stagePrice" type="xs:decimal" minOccurs="0">
+										<xs:annotation>
+											<xs:documentation>Цена этапа</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="stageStatus" type="stageStatusKind" minOccurs="0">
+										<xs:annotation>
+											<xs:documentation>Статус этапа</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="stagePaymentStatus" type="stagePaymentStatusKind" minOccurs="0">
+										<xs:annotation>
+											<xs:documentation>Статус оплаты</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+			<xs:element name="specs" minOccurs="0">
+				<xs:annotation>
+					<xs:documentation>Спецификация продукции</xs:documentation>
+				</xs:annotation>
+				<xs:complexType>
+					<xs:sequence>
+						<xs:element name="spec" maxOccurs="unbounded">
+							<xs:annotation>
+								<xs:documentation>Продукция</xs:documentation>
+							</xs:annotation>
+							<xs:complexType>
+								<xs:sequence>
+									<xs:element name="specProduct" type="xs:string">
+										<xs:annotation>
+											<xs:documentation>Наименование продукции</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="specUnit" type="xs:string" minOccurs="0">
+										<xs:annotation>
+											<xs:documentation>Единица измерения</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="specPrice" type="xs:decimal" minOccurs="0">
+										<xs:annotation>
+											<xs:documentation>Цена за единицу</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="specAmount" type="xs:int" minOccurs="0">
+										<xs:annotation>
+											<xs:documentation>Количество</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+									<xs:element name="specCost" type="xs:decimal" minOccurs="0">
+										<xs:annotation>
+											<xs:documentation>Стоимость</xs:documentation>
+										</xs:annotation>
+									</xs:element>
+								</xs:sequence>
+							</xs:complexType>
+						</xs:element>
+					</xs:sequence>
+				</xs:complexType>
+			</xs:element>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:simpleType name="contractKind">
+		<xs:annotation>
+			<xs:documentation>Виды контрактов: WS - Выполнение работ (оказание услуг); NIR - НИР; OKR - ОКР; DG - Поставка товара; TR - Транспортировка; NIOKR - НИОКР; CAP - Капитальные вложения; OTH - Прочие нужды; MOP - МОП; SER - Серийная продукция; UTL - Утилизация</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="WS"/>
+			<xs:enumeration value="NIR"/>
+			<xs:enumeration value="OKR"/>
+			<xs:enumeration value="DG"/>
+			<xs:enumeration value="TR"/>
+			<xs:enumeration value="NIOKR"/>
+			<xs:enumeration value="CAP"/>
+			<xs:enumeration value="OTH"/>
+			<xs:enumeration value="MOP"/>
+			<xs:enumeration value="SER"/>
+			<xs:enumeration value="UTL"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="dschangeKind">
+		<xs:annotation>
+			<xs:documentation>Виды изменений: EC - Существенные условия; NEC - Несущественные условия; DIS - Расторжение контракта</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="EC"/>
+			<xs:enumeration value="NEC"/>
+			<xs:enumeration value="DIS"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="lawKind">
+		<xs:annotation>
+			<xs:documentation>Закон: 44 - 44 ФЗ; 94 - 94 ФЗ; NA - Не определен</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="44"/>
+			<xs:enumeration value="94"/>
+			<xs:enumeration value="NA"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="contractStatusKind">
+		<xs:annotation>
+			<xs:documentation>Статусы контракта: 11 - Подписан; 15 - Закрыт.Исполнен; 19 - Расторгнут</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:unsignedByte">
+			<xs:enumeration value="11"/>
+			<xs:enumeration value="15"/>
+			<xs:enumeration value="19"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="stageStatusKind">
+		<xs:annotation>
+			<xs:documentation>Статусы этапа: 21 - Ожидается; 23 - Исполняется; 25 - Завершено; 29 - Отказ в приемке</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:unsignedByte">
+			<xs:enumeration value="21"/>
+			<xs:enumeration value="23"/>
+			<xs:enumeration value="25"/>
+			<xs:enumeration value="29"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:simpleType name="stagePaymentStatusKind">
+		<xs:annotation>
+			<xs:documentation>Статусы оплаты: 31 - Ожидает оплату; 33 - Оплачен частично; 35 - Оплачен; 39 - Перефинансирован</xs:documentation>
+		</xs:annotation>
+		<xs:restriction base="xs:unsignedByte">
+			<xs:enumeration value="31"/>
+			<xs:enumeration value="33"/>
+			<xs:enumeration value="35"/>
+			<xs:enumeration value="39"/>
+		</xs:restriction>
+	</xs:simpleType>
+</xs:schema>

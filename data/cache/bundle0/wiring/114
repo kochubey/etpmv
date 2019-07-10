@@ -1,0 +1,10 @@
+osgi.wiring.package; (osgi.wiring.package=javax.naming)
+0; version=0.0.0
+osgi.wiring.package; (&(osgi.wiring.package=javax.transaction.xa)(version>=1.1.0))
+34; version=1.2.0
+osgi.wiring.package; (osgi.wiring.package=javax.security.auth.callback)
+0; version=0.0.0
+osgi.wiring.package; (osgi.wiring.package=javax.security.auth)
+0; version=0.0.0
+osgi.wiring.package; (&(osgi.wiring.package=javax.transaction)(version>=1.1.0))
+34; version=1.2.0

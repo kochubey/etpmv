@@ -1,0 +1,28 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "version": "1.0.0",
+    "title": "Abonent"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:9094"
+    }
+  ],
+  "paths": {
+    "/abonent": {
+      "post": {
+        "summary": "abonent",
+        "operationId": "abonent",
+        "tags": [
+          "clients"
+        ],
+        "responses": {
+          "200": {
+            "description": ""
+          }
+        }
+      }
+    }
+  }
+}

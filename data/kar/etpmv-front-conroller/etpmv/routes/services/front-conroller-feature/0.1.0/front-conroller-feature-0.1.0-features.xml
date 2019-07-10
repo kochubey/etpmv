@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<features xmlns="http://karaf.apache.org/xmlns/features/v1.0.0" name="front-conroller-feature">
+    <feature name="front-conroller-feature" version="0.1.0">
+        <feature>camel-groovy</feature>
+        <feature>activemq-camel</feature>
+        <feature>camel-spring</feature>
+        <feature>camel-blueprint</feature>
+        <feature>camel-core</feature>
+        <feature>camel-jms</feature>
+        <feature>http</feature>
+        <feature>camel-jetty9</feature>
+        <feature>camel-http</feature>
+        <bundle>mvn:etpmv.routes.services/front-conroller-bundle/0.1.0</bundle>
+        <config name="etpmv.routes.services.front.controller">
+            front.controller.port=9090
+            front.controller.configs=${karaf.etc}/configs
+
+            datasource.url=jdbc\:oracle\:thin\:@10.0.53.33\:1521\:xe
+            datasource.user=CMS
+            datasource.password=52XAMAqLDfpMiKFR
+
+            #CMS
+            cms.numerator.request.target.url=http4://10.0.54.87:80/CMS_DEV/additional/wservice.nsf/NumeratorService
+
+            #Start
+            asr.address.request.target.url=http4://10.0.54.87:8088/startapiService
+            asr.lines.request.target.url=http4://10.0.54.87:8088/startapiService
+            asr.packages.request.target.url=http4://10.0.54.87:8088/startapiService
+
+            #KTP
+            ktp.extdocument.create.target.url=http4://10.0.54.87:8088/extDocument
+            ktp.extdocument.get.target.url=http4://10.0.54.87:8088/extDocument
+            ktp.extdocument.context.target.url=http4://10.0.54.87:8088/extDocument
+        </config>
+    </feature>
+</features>
